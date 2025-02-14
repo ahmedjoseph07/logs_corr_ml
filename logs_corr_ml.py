@@ -139,5 +139,31 @@ plt.show()
 # Hyper Parameter of DT model 
 print(model_T.get_params())
 
+# Importing Xtreme Gradient Boosting Model 
+from sklearn.model_selection import GridSearchCV
+import xgboost as xgb #(pip install xgboostr)
 
+# model_xgb = xgb.XGBClassifier()
+model_xgb = xgb.XGBRegressor()
+
+# Training the model with train data set
+model_xgb.fit(x_train,y_train)
+
+# Calculating Correlation Coefficient of the model from test data set
+print(f"Correlation Coefficient:{model_xgb.score(x_test,y_test)}")
+
+# Visualizing of the predicted target values
+y_pred_xgb = model_xgb.predict(x_test) # Predicting the model with test data set (generated from train_test_split)\
+print(y_pred_xgb)
+
+# Calculating mean squared error of XGB Model 
+MSE_xgb = mean_squared_error(y_test,y_pred_xgb)
+print(f"Mean Squared Error: {MSE_xgb}")
+
+#Calculating Root Mean Squared Error of XGB Model
+RMSE_xgb = np.sqrt(MSE_xgb)
+print(f"Root Mean Squared Error: {RMSE_xgb}")
+
+# Hyper Parameter of XGB Model
+print(model_xgb.get_params())
 
